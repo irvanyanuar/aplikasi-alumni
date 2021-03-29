@@ -74,7 +74,7 @@
                     </ul>
                 </li>
 
-                <li class="nav-header">Manajemen User</li>
+                <li class="nav-header">Manajemen Master Data</li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
@@ -99,6 +99,12 @@
                             </a>
                         </li>
                     </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('college.index')}}" class="nav-link">
+                        <i class="fas fa-university nav-icon"></i>
+                        <p>Data Perguruan Tinggi</p>
+                    </a>
                 </li>
 
                 <li class="nav-header">Profil</li>
