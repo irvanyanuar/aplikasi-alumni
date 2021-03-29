@@ -1,0 +1,13 @@
+Section2 untuk menggunakan Template
+
+@section('header')
+Untuk memanggil file assets di dalam tag head
+
+@section('content-header')
+Untuk menulis header halaman
+
+@section('content')
+Untuk menulis isi halaman
+
+@section('script')
+Untuk menambah script di akhir <body>

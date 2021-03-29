@@ -21,3 +21,7 @@ Route::get('/', function () {
 Route::get('/tes', function () {
     return View('template.index');
 });
+
+Route::get('/home', function () {
+    return View('dashboard.index');
+})->name('home');
