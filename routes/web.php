@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CollegeController;
 use Facade\FlareClient\View;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes([
+    'register' => false,
+    'reset' => false
+]);
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/home', function () {
+    return View('dashboard.index');
+})->name('home');
 
 Route::get('/tes', function () {
     return View('template.index');
@@ -34,10 +44,8 @@ Route::prefix('/college')->group(function () {
     Route::post('/destroy/{id}', [CollegeController::class, 'destroy'])->name('college.destroy');
 });
 
-Route::get('/home', function () {
-    return View('dashboard.index');
-})->name('home');
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -135,7 +135,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <form action="#" method="POST">
+                    <form action="{{route('logout')}}" method="POST">
                         @csrf
                         <button onclick="return confirm('Yakin akan logout?')" class="nav-link btn btn-flat"><i class="fas fa-sign-out-alt nav-icon"></i> Logout</button>
                     </form>
