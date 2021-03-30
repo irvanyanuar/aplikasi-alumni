@@ -106,6 +106,12 @@
                         <p>Data Perguruan Tinggi</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('regency.index')}}" class="nav-link">
+                        <i class="fas fa-city nav-icon"></i>
+                        <p>Data Kabupaten/Kota</p>
+                    </a>
+                </li>
 
                 <li class="nav-header">Profil</li>
                 <li class="nav-item">

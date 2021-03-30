@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CollegeController;
+use App\Http\Controllers\RegencyController;
 use Facade\FlareClient\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -50,6 +51,10 @@ Route::prefix('/college')->group(function () {
     Route::post('/', [CollegeController::class, 'store'])->name('college.store');
     Route::post('/update/{id}', [CollegeController::class, 'update'])->name('college.update');
     Route::post('/destroy/{id}', [CollegeController::class, 'destroy'])->name('college.destroy');
+});
+
+Route::prefix('/regency')->group(function () {
+    Route::get('/', [RegencyController::class, 'index'])->name('regency.index');
 });
 
 
