@@ -1,4 +1,4 @@
-<table class="table table-striped" id="collegeTable">
+<table class="table" id="collegeTable">
     <thead class="thead-light">
         <tr>
             <th>Nama Perguruan Tinggi</th>

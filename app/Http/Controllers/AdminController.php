@@ -5,21 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($level)
+    public function index()
     {
-        $users = User::all()->where('level' == $level);
-        if ($level == 'admin') {
-            
-        } else {
-            
-        }
+        $admin = User::where('level', 'admin')->get();
+        return view('admin.index', compact('admin'));
     }
 
     /**
@@ -29,7 +25,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create');
     }
 
     /**
@@ -40,7 +36,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'password' => 'required|confirmed|min:8',
+            'email' => 'required|email|unique:users'
+        ]);
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->level = 'admin';
+        $user->password = bcrypt($request->password);
+        $user->save();
+        return redirect("/admin")->with('pesan', 'Berhasil menambah data admin');
     }
 
     /**
@@ -62,7 +70,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $admin = User::find($id);
+        return view('admin.edit', compact('admin'));
     }
 
     /**
@@ -74,7 +83,16 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $admin = User::find($id);
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+
+        if ($request->input('password')) {
+            $admin->password = bcrypt($request->password);
+        }
+
+        $admin->update();
+        return redirect("/admin")->with('pesan', 'Berhasil mengupdate data admin');
     }
 
     /**
@@ -85,6 +103,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $admin = User::find($id);
+        $admin->delete();
+        return redirect("/admin")->with('pesan', 'Data admin berhasil dihapus');
     }
 }

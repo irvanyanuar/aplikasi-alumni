@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CollegeController;
 use Facade\FlareClient\View;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +34,14 @@ Route::get('/tes', function () {
     return View('template.index');
 });
 
-// Route::resource('colleges', CollegeController::class);
+Route::prefix('/admin')->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/create', [AdminController::class, 'create'])->name('admin.create');
+    Route::get('/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
+    Route::post('/', [AdminController::class, 'store'])->name('admin.store');
+    Route::post('/update/{id}', [AdminController::class, 'update'])->name('admin.update');
+    Route::post('/destroy/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
+});
 
 Route::prefix('/college')->group(function () {
     Route::get('/', [CollegeController::class, 'index'])->name('college.index');

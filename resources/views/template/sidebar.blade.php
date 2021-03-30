@@ -85,7 +85,7 @@
                     </a>
                     <ul class="nav nav-treeview" style="display: none;">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('admin.index')}}" class="nav-link">
                                 <i class="nav-icon fas fa-users-cog"></i>
                                 <p>Data Admin</p>
                             </a>
