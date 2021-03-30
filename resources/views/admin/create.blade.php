@@ -30,7 +30,18 @@
                 </div>
                 <div class="form-group">
                     <label for="email">Email <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="email" required>
+                    <input type="email" class="form-control" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="photo">Foto</label>
+                    <div class="form-group">
+                        <!-- <label for="customFile">Custom File</label> -->
+                        <div class="custom-file">
+                            <input type="file" accept=".jpg,.jpeg,.png" class="custom-file-input" id="customFile" name="photo">
+                            <label class="custom-file-label" for="customFile">Choose file</label>
+                            <span>(Foto berekstensi .jpg, .jpeg, atau .png )</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="password">Password <span class="text-danger">*</span></label>
@@ -52,8 +63,13 @@
 @endsection
 
 @section('script')
+<!-- bs-custom-file-input -->
+<script src="{{asset('assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
+
 <script type="text/javascript">
     $(function() {
+        bsCustomFileInput.init();
+
         $("#btnSubmit").click(function() {
             var password = $("#txtPassword").val();
             var confirmPassword = $("#txtConfirmPassword").val();

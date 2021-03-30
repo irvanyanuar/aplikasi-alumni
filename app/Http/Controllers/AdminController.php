@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use File;
 
 class AdminController extends Controller
 {
@@ -39,15 +40,26 @@ class AdminController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'password' => 'required|confirmed|min:8',
-            'email' => 'required|email|unique:users'
+            'email' => 'required|email|unique:users',
+            'photo' => 'image|mimes:jpeg,jpg,png'
         ]);
 
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->level = 'admin';
-        $user->password = bcrypt($request->password);
-        $user->save();
+        $admin = new User();
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+        $admin->level = 'admin';
+
+        if ($request->has('photo')) {
+            $photo = $request->photo;
+            $namafile = time() . '.' . $photo->getClientOriginalExtension();
+            $photo->move('assets/img/foto-profil/', $namafile);
+            $admin->photo = $namafile;
+        } else {
+            $admin->photo = "admin.png";
+        }
+
+        $admin->password = bcrypt($request->password);
+        $admin->save();
         return redirect("/admin")->with('pesan', 'Berhasil menambah data admin');
     }
 
@@ -83,9 +95,28 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$id,
+            'photo' => 'image|mimes:jpeg,jpg,png'
+        ]);
+
         $admin = User::find($id);
         $admin->name = $request->name;
         $admin->email = $request->email;
+
+        if ($request->has('photo')) {
+            $photo = $request->photo;
+            $namafile = time() . '.' . $photo->getClientOriginalExtension();
+            $photo->move('assets/img/foto-profil/', $namafile);
+
+            if ($admin->photo != 'admin.png') {
+                // hapus foto lama
+                File::delete('assets/img/foto-profil/' . $admin->photo);
+            }
+
+            $admin->photo = $namafile;
+        }
 
         if ($request->input('password')) {
             $admin->password = bcrypt($request->password);
@@ -104,6 +135,10 @@ class AdminController extends Controller
     public function destroy($id)
     {
         $admin = User::find($id);
+        if ($admin->photo != 'admin.png') {
+            // hapus foto lama
+            File::delete('assets/img/foto-profil/' . $admin->photo);
+        }
         $admin->delete();
         return redirect("/admin")->with('pesan', 'Data admin berhasil dihapus');
     }

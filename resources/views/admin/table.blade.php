@@ -11,7 +11,7 @@
         @foreach ($admin as $data)
         <tr>
             <td>{{$data->name}}</td>
-            <td>{{$data->photo}}</td>
+            <td><img src="{{asset('assets/img/foto-profil/'.$data->photo)}}" style="width: 80px;"> </td>
             <td>{{$data->email}}</td>
             <td>
                 <form action="{{route('admin.destroy', $data->id)}}" method="POST">

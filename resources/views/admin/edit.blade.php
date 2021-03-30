@@ -33,14 +33,26 @@
                     <input type="text" value="{{$admin->email}}" class="form-control" name="email" required>
                 </div>
                 <div class="form-group">
-                    <label for="password">Password <span class="text-danger">*</span></label>
-                    <input type="password" id="txtPassword" minlength="8" class="form-control" name="password">
-                    <span class="text-danger">*</span>) Apabila password tidak diganti kosongkan saja
+                    <label for="photo">Foto</label>
+                    <div class="form-group">
+                        <!-- <label for="customFile">Custom File</label> -->
+                        <div class="custom-file">
+                            <input type="file" accept=".jpg,.jpeg,.png" class="custom-file-input" id="customFile" name="photo">
+                            <label class="custom-file-label" for="customFile">Choose file</label>
+                            <div>(Foto berekstensi .jpg, .jpeg, atau .png )</div>
+                            <span class="text-primary">*</span>) Apabila foto tidak diganti kosongkan saja
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="password_confirmation">Konfirmasi Password <span class="text-danger">*</span></label>
+                    <label for="password">Password</label>
+                    <input type="password" id="txtPassword" minlength="8" class="form-control" name="password">
+                    <span class="text-primary">*</span>) Apabila password tidak diganti kosongkan saja
+                </div>
+                <div class="form-group">
+                    <label for="password_confirmation">Konfirmasi Password</label>
                     <input type="password" id="txtConfirmPassword" minlength="8" class="form-control" name="password_confirmation">
-                    <span class="text-danger">*</span>) Apabila password tidak diganti kosongkan saja
+                    <span class="text-primary">*</span>) Apabila password tidak diganti kosongkan saja
                 </div>
                 <div class="form-group">
                     <button type="submit" id="btnSubmit" class="btn btn-success">Simpan</button>
@@ -54,7 +66,12 @@
 @endsection
 
 @section('script')
+<!-- bs-custom-file-input -->
+<script src="{{asset('assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
+
 <script type="text/javascript">
+    bsCustomFileInput.init();
+    
     $(function() {
         $("#btnSubmit").click(function() {
             var password = $("#txtPassword").val();
