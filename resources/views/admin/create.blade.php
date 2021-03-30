@@ -39,7 +39,7 @@
                         <div class="custom-file">
                             <input type="file" accept=".jpg,.jpeg,.png" class="custom-file-input" id="customFile" name="photo">
                             <label class="custom-file-label" for="customFile">Choose file</label>
-                            <span>(Foto berekstensi .jpg, .jpeg, atau .png )</span>
+                            <span>(Foto minimal 500&times;500 piksel berekstensi .jpg, .jpeg, atau .png )</span>
                         </div>
                     </div>
                 </div>

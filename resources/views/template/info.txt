@@ -1,4 +1,4 @@
-Section2 untuk menggunakan Template
+Section-section untuk menggunakan Template
 
 @section('header')
 Untuk memanggil file assets di dalam tag head

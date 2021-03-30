@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use File;
+use Image;
 
 class AdminController extends Controller
 {
@@ -52,7 +53,7 @@ class AdminController extends Controller
         if ($request->has('photo')) {
             $photo = $request->photo;
             $namafile = time() . '.' . $photo->getClientOriginalExtension();
-            $photo->move('assets/img/foto-profil/', $namafile);
+            Image::make($photo->getRealPath())->resize(300, 300)->save('assets/img/foto-profil/', $namafile);
             $admin->photo = $namafile;
         } else {
             $admin->photo = "admin.png";
@@ -97,7 +98,7 @@ class AdminController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
+            'email' => 'required|email|unique:users,email,' . $id,
             'photo' => 'image|mimes:jpeg,jpg,png'
         ]);
 
@@ -108,7 +109,9 @@ class AdminController extends Controller
         if ($request->has('photo')) {
             $photo = $request->photo;
             $namafile = time() . '.' . $photo->getClientOriginalExtension();
-            $photo->move('assets/img/foto-profil/', $namafile);
+            Image::make($photo->getRealPath())->resize(500, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->crop(500, 500)->save('assets/img/foto-profil/' . $namafile, 80);
 
             if ($admin->photo != 'admin.png') {
                 // hapus foto lama
