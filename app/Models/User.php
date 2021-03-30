@@ -49,4 +49,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function birth_place(){
+        return $this->belongsTo('App\Models\Regency', 'birth_place_id', 'id');
+    }
 }

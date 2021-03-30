@@ -53,7 +53,9 @@ class AdminController extends Controller
         if ($request->has('photo')) {
             $photo = $request->photo;
             $namafile = time() . '.' . $photo->getClientOriginalExtension();
-            Image::make($photo->getRealPath())->resize(300, 300)->save('assets/img/foto-profil/', $namafile);
+            Image::make($photo)->resize(500, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->crop(500, 500)->save('assets/img/foto-profil/' . $namafile, 80);
             $admin->photo = $namafile;
         } else {
             $admin->photo = "admin.png";
@@ -109,7 +111,7 @@ class AdminController extends Controller
         if ($request->has('photo')) {
             $photo = $request->photo;
             $namafile = time() . '.' . $photo->getClientOriginalExtension();
-            Image::make($photo->getRealPath())->resize(500, null, function ($constraint) {
+            Image::make($photo)->resize(500, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->crop(500, 500)->save('assets/img/foto-profil/' . $namafile, 80);
 

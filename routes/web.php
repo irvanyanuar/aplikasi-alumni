@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\CollegeController;
 use App\Http\Controllers\RegencyController;
 use Facade\FlareClient\View;
@@ -42,6 +43,15 @@ Route::prefix('/admin')->group(function () {
     Route::post('/', [AdminController::class, 'store'])->name('admin.store');
     Route::post('/update/{id}', [AdminController::class, 'update'])->name('admin.update');
     Route::post('/destroy/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
+});
+
+Route::prefix('/alumni')->group(function () {
+    Route::get('/', [AlumniController::class, 'index'])->name('alumni.index');
+    Route::get('/create', [AlumniController::class, 'create'])->name('alumni.create');
+    Route::get('/edit/{id}', [AlumniController::class, 'edit'])->name('alumni.edit');
+    Route::post('/', [AlumniController::class, 'store'])->name('alumni.store');
+    Route::post('/update/{id}', [AlumniController::class, 'update'])->name('alumni.update');
+    Route::post('/destroy/{id}', [AlumniController::class, 'destroy'])->name('alumni.destroy');
 });
 
 Route::prefix('/college')->group(function () {

@@ -91,7 +91,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('alumni.index')}}" class="nav-link">
                                 <i class="nav-icon fas fa-address-card"></i>
                                 <p>
                                     Data User Alumni
