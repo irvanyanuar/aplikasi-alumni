@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\College;
+use App\Models\Regency;
 use Illuminate\Http\Request;
 
 class CollegeController extends Controller
@@ -25,7 +26,8 @@ class CollegeController extends Controller
      */
     public function create()
     {
-        return view('college.create');
+        $regencies = Regency::all();
+        return view('college.create', compact('regencies'));
     }
 
     /**
@@ -38,11 +40,11 @@ class CollegeController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'regency' => 'required'
+            'regency_id' => 'required'
         ]);
         $college = new College();
         $college->name = $request->name;
-        $college->regency = $request->regency;
+        $college->regency_id = $request->regency_id;
 
         $college->save();
         return redirect("/college")->with('pesan', 'Berhasil menambah data perguruan tinggi');
@@ -68,7 +70,8 @@ class CollegeController extends Controller
     public function edit($id)
     {
         $college = College::find($id);
-        return view('college.edit', compact('college'));
+        $regencies = Regency::all();
+        return view('college.edit', compact('college', 'regencies'));
     }
 
     /**
@@ -82,11 +85,11 @@ class CollegeController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'regency' => 'required'
+            'regency_id' => 'required'
         ]);
         $college = College::find($id);
         $college->name = $request->name;
-        $college->regency = $request->regency;
+        $college->regency_id = $request->regency_id;
 
         $college->update();
         return redirect("/college")->with('pesan', 'Berhasil mengupdate data perguruan tinggi');

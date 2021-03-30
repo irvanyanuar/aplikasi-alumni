@@ -10,7 +10,7 @@
         @foreach ($colleges as $data)
         <tr>
             <td>{{$data->name}}</td>
-            <td>{{$data->regency}}</td>
+            <td>{{$data->regency->name}}</td>
             <td>
                 <form action="{{route('college.destroy', $data->id)}}" method="POST">
                     @csrf

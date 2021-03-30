@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Regency extends Model
 {
     use HasFactory;
+    protected $table = 'regencies';
+    protected $hidden = ['created_at', 'updated_at'];
 }
