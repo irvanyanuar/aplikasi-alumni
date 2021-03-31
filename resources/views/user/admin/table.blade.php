@@ -14,9 +14,9 @@
             <td><img src="{{asset('assets/img/foto-profil/'.$data->photo)}}" style="width: 100px;"> </td>
             <td>{{$data->email}}</td>
             <td>
-                <form action="{{route('admin.destroy', $data->id)}}" method="POST">
+                <form action="{{route('user.admin.destroy', $data->id)}}" method="POST">
                     @csrf
-                    <a href="{{route('admin.edit', $data->id)}}" class="btn btn-warning btn-xs"><i class="fa fa-pencil-alt"></i> Edit</a>
+                    <a href="{{route('user.admin.edit', $data->id)}}" class="btn btn-warning btn-xs"><i class="fa fa-pencil-alt"></i> Edit</a>
                     <button onclick="return confirm('Yakin akan dihapus?')" class="btn btn-danger btn-xs"><i class="fa fa-times"></i> Hapus</button>
                 </form>
             </td>

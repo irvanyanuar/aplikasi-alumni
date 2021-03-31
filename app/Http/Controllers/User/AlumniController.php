@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
+use App\Models\Regency;
 use App\Models\User;
 use Illuminate\Http\Request;
-use File;
-use Image;
 
-class AdminController extends Controller
+class AlumniController extends Controller
 {
     public function __construct()
     {
@@ -20,8 +20,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $admin = User::where('level', 'admin')->get();
-        return view('admin.index', compact('admin'));
+        $alumni = User::where('level', 'alumni')->get();
+        return view('user.alumni.index', compact('alumni'));
     }
 
     /**
@@ -31,7 +31,8 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('admin.create');
+        $regencies = Regency::all();
+        return view('user.alumni.create', compact('regencies'));
     }
 
     /**
@@ -49,10 +50,15 @@ class AdminController extends Controller
             'photo' => 'image|mimes:jpeg,jpg,png'
         ]);
 
-        $admin = new User();
-        $admin->name = $request->name;
-        $admin->email = $request->email;
-        $admin->level = 'admin';
+        $alumni = new User();
+        $alumni->name = $request->name;
+        $alumni->email = $request->email;
+        $alumni->level = 'alumni';
+        $alumni->student_number = $request->student_number;
+        $alumni->entry_year = $request->entry_year;
+        $alumni->graduation_year = $request->graduation_year;
+        $alumni->birth_place_id = $request->birth_place_id;
+        $alumni->birth_date = $request->birth_date;
 
         if ($request->has('photo')) {
             $photo = $request->photo;
@@ -60,14 +66,14 @@ class AdminController extends Controller
             Image::make($photo)->resize(500, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->crop(500, 500)->save('assets/img/foto-profil/' . $namafile, 80);
-            $admin->photo = $namafile;
+            $alumni->photo = $namafile;
         } else {
-            $admin->photo = "admin.png";
+            $alumni->photo = "alumni.png";
         }
 
-        $admin->password = bcrypt($request->password);
-        $admin->save();
-        return redirect("/admin")->with('pesan', 'Berhasil menambah data admin');
+        $alumni->password = bcrypt($request->password);
+        $alumni->save();
+        return redirect("/alumni")->with('pesan', 'Berhasil menambah data alumni');
     }
 
     /**
@@ -89,8 +95,9 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        $admin = User::find($id);
-        return view('admin.edit', compact('admin'));
+        $alumni = User::find($id);
+        $regencies = Regency::all();
+        return view('user.alumni.edit', compact('alumni', 'regencies'));
     }
 
     /**
@@ -108,9 +115,14 @@ class AdminController extends Controller
             'photo' => 'image|mimes:jpeg,jpg,png'
         ]);
 
-        $admin = User::find($id);
-        $admin->name = $request->name;
-        $admin->email = $request->email;
+        $alumni = User::find($id);
+        $alumni->name = $request->name;
+        $alumni->email = $request->email;
+        $alumni->student_number = $request->student_number;
+        $alumni->entry_year = $request->entry_year;
+        $alumni->graduation_year = $request->graduation_year;
+        $alumni->birth_place_id = $request->birth_place_id;
+        $alumni->birth_date = $request->birth_date;
 
         if ($request->has('photo')) {
             $photo = $request->photo;
@@ -119,20 +131,20 @@ class AdminController extends Controller
                 $constraint->aspectRatio();
             })->crop(500, 500)->save('assets/img/foto-profil/' . $namafile, 80);
 
-            if ($admin->photo != 'admin.png') {
+            if ($alumni->photo != 'alumni.png') {
                 // hapus foto lama
-                File::delete('assets/img/foto-profil/' . $admin->photo);
+                File::delete('assets/img/foto-profil/' . $alumni->photo);
             }
 
-            $admin->photo = $namafile;
+            $alumni->photo = $namafile;
         }
 
         if ($request->input('password')) {
-            $admin->password = bcrypt($request->password);
+            $alumni->password = bcrypt($request->password);
         }
 
-        $admin->update();
-        return redirect("/admin")->with('pesan', 'Berhasil mengupdate data admin');
+        $alumni->update();
+        return redirect("/alumni")->with('pesan', 'Berhasil mengupdate data alumni');
     }
 
     /**
@@ -143,12 +155,12 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        $admin = User::find($id);
-        if ($admin->photo != 'admin.png') {
+        $alumni = User::find($id);
+        if ($alumni->photo != 'alumni.png') {
             // hapus foto lama
-            File::delete('assets/img/foto-profil/' . $admin->photo);
+            File::delete('assets/img/foto-profil/' . $alumni->photo);
         }
-        $admin->delete();
-        return redirect("/admin")->with('pesan', 'Data admin berhasil dihapus');
+        $alumni->delete();
+        return redirect("/alumni")->with('pesan', 'Data alumni berhasil dihapus');
     }
 }

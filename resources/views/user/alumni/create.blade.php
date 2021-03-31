@@ -14,8 +14,8 @@
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{route('alumni.index')}}">Alumni</a></li>
-            <li class="breadcrumb-item active">Edit Data</li>
+            <li class="breadcrumb-item"><a href="{{route('user.alumni.index')}}">Alumni</a></li>
+            <li class="breadcrumb-item active">Tambah Data</li>
         </ol>
     </div><!-- /.col -->
 </div><!-- /.row -->
@@ -25,44 +25,42 @@
 <div class="col-12">
     <div class="card card-primary col-md-9">
         <div class="card-header">
-            <h4>Edit Data</h4>
+            <h4>Tambah Data</h4>
         </div>
         <div class="card-body">
-            <form action="{{route('alumni.update', $alumni->id)}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('user.alumni.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="name">Nama Alumni <span class="text-danger">*</span></label>
-                    <input type="text" value="{{$alumni->name}}" class="form-control" name="name" required>
+                    <input type="text" class="form-control" name="name" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email <span class="text-danger">*</span></label>
-                    <input type="text" value="{{$alumni->email}}" class="form-control" name="email" required>
+                    <input type="text" class="form-control" name="email" required>
                 </div>
                 <div class="form-group">
                     <label for="student_number">Nomor Induk<span class="text-danger">*</span></label>
-                    <input type="number" value="{{$alumni->student_number}}" class="form-control" name="student_number" required>
+                    <input type="number" class="form-control" name="student_number" required>
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="txtPassword" minlength="8" class="form-control" name="password">
-                    <span class="text-primary">*</span>) Apabila password tidak diganti kosongkan saja
+                    <label for="password">Password <span class="text-danger">*</span></label>
+                    <input type="password" id="txtPassword" minlength="8" class="form-control" name="password" required>
                 </div>
                 <div class="form-group">
-                    <label for="password_confirmation">Konfirmasi Password</label>
-                    <input type="password" id="txtConfirmPassword" minlength="8" class="form-control" name="password_confirmation">
-                    <span class="text-primary">*</span>) Apabila password tidak diganti kosongkan saja
+                    <label for="password_confirmation">Konfirmasi Password <span class="text-danger">*</span></label>
+                    <input type="password" id="txtConfirmPassword" minlength="8" class="form-control" name="password_confirmation" required>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="entry_year">Tahun Masuk<span class="text-danger">*</span></label>
-                            <input type="number" value="{{$alumni->entry_year}}" min="2000" max="9999" class="form-control" name="entry_year" required placeholder="YYYY">
+                            <input type="number" min="2000" max="9999" class="form-control" name="entry_year" required placeholder="YYYY">
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="graduation_year">Tahun Lulus<span class="text-danger">*</span></label>
-                            <input type="number" value="{{$alumni->graduation_year}}" min="2000" max="9999" class="form-control" name="graduation_year" required placeholder="YYYY">
+                            <input type="number" min="2000" max="9999" class="form-control" name="graduation_year" required placeholder="YYYY">
                         </div>
                     </div>
                 </div>
@@ -81,12 +79,12 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="birth_date">Tanggal Lahir</label>
-                            <input type="date" value="{{$alumni->birth_date}}" class="form-control" name="birth_date">
+                            <input type="date" class="form-control" name="birth_date">
                         </div>
                     </div>
                 </div>
                 <button type="submit" id="btnSubmit" class="btn btn-success">Simpan</button>
-                <a href="/alumni" class="btn btn-warning">Batal</a>
+                <a href="/user/alumni" class="btn btn-warning">Batal</a>
                 </>
             </form>
             <strong class="float-right"><span class="text-danger">*</span>) Harus diisi.</strong>

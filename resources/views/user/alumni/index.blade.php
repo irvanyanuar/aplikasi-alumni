@@ -34,7 +34,7 @@
         <div class="card-header">
             <h4><i class="nav-icon fa fa-university fa-xs"></i> Data Alumni
                 <div class="float-right">
-                    <a href="{{ route('alumni.create') }}" class="btn btn-primary mb-3 btn-sm">
+                    <a href="{{ route('user.alumni.create') }}" class="btn btn-primary mb-3 btn-sm">
                         <i class="fa fa-plus fa-xs"></i> Tambah Data</a>
                 </div>
             </h4>
@@ -42,7 +42,7 @@
         <!-- /.card-header -->
         <div class="card-body">
 
-            @include('alumni.table')
+            @include('user.alumni.table')
 
         </div>
         <!-- /.card-body -->

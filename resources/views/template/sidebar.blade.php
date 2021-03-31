@@ -90,7 +90,7 @@
                     </a>
                     <ul class="nav nav-treeview" style="display: none;">
                         <li class="nav-item">
-                            <a href="{{route('alumni.index')}}" class="nav-link">
+                            <a href="{{route('user.alumni.index')}}" class="nav-link">
                                 <i class="nav-icon fas fa-address-card"></i>
                                 <p>
                                     Data User Alumni
@@ -98,7 +98,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('admin.index')}}" class="nav-link">
+                            <a href="{{route('user.admin.index')}}" class="nav-link">
                                 <i class="nav-icon fas fa-users-cog"></i>
                                 <p>Data Admin</p>
                             </a>

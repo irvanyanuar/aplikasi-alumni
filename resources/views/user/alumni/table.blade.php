@@ -21,9 +21,9 @@
             <td>{{$data->graduation_year}}</td>
 
             <td>
-                <form action="{{route('alumni.destroy', $data->id)}}" method="POST">
+                <form action="{{route('user.alumni.destroy', $data->id)}}" method="POST">
                     @csrf
-                    <a href="{{route('alumni.edit', $data->id)}}" class="btn btn-warning btn-xs"><i class="fa fa-pencil-alt"></i> Edit</a>
+                    <a href="{{route('user.alumni.edit', $data->id)}}" class="btn btn-warning btn-xs"><i class="fa fa-pencil-alt"></i> Edit</a>
                     <button onclick="return confirm('Yakin akan dihapus?')" class="btn btn-danger btn-xs"><i class="fa fa-times"></i> Hapus</button>
                 </form>
             </td>

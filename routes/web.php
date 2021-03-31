@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AlumniController;
+use App\Http\Controllers\User\AdminController;
+use App\Http\Controllers\User\AlumniController;
 use App\Http\Controllers\CollegeController;
 use App\Http\Controllers\RegencyController;
 use Facade\FlareClient\View;
@@ -36,22 +36,24 @@ Route::get('/tes', function () {
     return View('template.index');
 });
 
-Route::prefix('/admin')->group(function () {
-    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
-    Route::get('/create', [AdminController::class, 'create'])->name('admin.create');
-    Route::get('/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
-    Route::post('/', [AdminController::class, 'store'])->name('admin.store');
-    Route::post('/update/{id}', [AdminController::class, 'update'])->name('admin.update');
-    Route::post('/destroy/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
-});
+Route::prefix('/user')->group(function () {
+    Route::prefix('/admin')->group(function () {
+        Route::get('/', [AdminController::class, 'index'])->name('user.admin.index');
+        Route::get('/create', [AdminController::class, 'create'])->name('user.admin.create');
+        Route::get('/edit/{id}', [AdminController::class, 'edit'])->name('user.admin.edit');
+        Route::post('/', [AdminController::class, 'store'])->name('user.admin.store');
+        Route::post('/update/{id}', [AdminController::class, 'update'])->name('user.admin.update');
+        Route::post('/destroy/{id}', [AdminController::class, 'destroy'])->name('user.admin.destroy');
+    });
 
-Route::prefix('/alumni')->group(function () {
-    Route::get('/', [AlumniController::class, 'index'])->name('alumni.index');
-    Route::get('/create', [AlumniController::class, 'create'])->name('alumni.create');
-    Route::get('/edit/{id}', [AlumniController::class, 'edit'])->name('alumni.edit');
-    Route::post('/', [AlumniController::class, 'store'])->name('alumni.store');
-    Route::post('/update/{id}', [AlumniController::class, 'update'])->name('alumni.update');
-    Route::post('/destroy/{id}', [AlumniController::class, 'destroy'])->name('alumni.destroy');
+    Route::prefix('/alumni')->group(function () {
+        Route::get('/', [AlumniController::class, 'index'])->name('user.alumni.index');
+        Route::get('/create', [AlumniController::class, 'create'])->name('user.alumni.create');
+        Route::get('/edit/{id}', [AlumniController::class, 'edit'])->name('user.alumni.edit');
+        Route::post('/', [AlumniController::class, 'store'])->name('user.alumni.store');
+        Route::post('/update/{id}', [AlumniController::class, 'update'])->name('user.alumni.update');
+        Route::post('/destroy/{id}', [AlumniController::class, 'destroy'])->name('user.alumni.destroy');
+    });
 });
 
 Route::prefix('/college')->group(function () {
