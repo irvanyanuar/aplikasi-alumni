@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Achievement;
 use App\Models\College;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -27,7 +28,7 @@ class HomeController extends Controller
     {
         $alumni = User::where('level', 'alumni')->get();
         $jumlahCollege = College::where('jenis', 'perguruan tinggi')->get()->count();
-        $jumlahPrestasi = 10;
+        $jumlahPrestasi = Achievement::all()->count();
         $jumlahAdmin = User::where('level', 'admin')->count();
         return view('dashboard.index', compact('alumni', 'jumlahCollege', 'jumlahPrestasi', 'jumlahAdmin'));
     }

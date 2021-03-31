@@ -4,6 +4,7 @@ use App\Http\Controllers\User\AdminController;
 use App\Http\Controllers\User\AlumniController;
 use App\Http\Controllers\CollegeController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Profile\AchievementController;
 use App\Http\Controllers\Profile\EducationHistoryController;
 use App\Http\Controllers\Profile\JobExperienceController;
 use App\Http\Controllers\ProfileController;
@@ -95,6 +96,15 @@ Route::prefix('/profile')->group(function () {
         Route::post('/', [JobExperienceController::class, 'store'])->name('profile.job.store');
         Route::post('/update/{id}', [JobExperienceController::class, 'update'])->name('profile.job.update');
         Route::post('/destroy/{id}', [JobExperienceController::class, 'destroy'])->name('profile.job.destroy');
+    });
+
+    Route::prefix('/achievement')->group(function () {
+        Route::get('/', [AchievementController::class, 'index'])->name('profile.achievement.index');
+        Route::get('/create', [AchievementController::class, 'create'])->name('profile.achievement.create');
+        Route::get('/edit/{id}', [AchievementController::class, 'edit'])->name('profile.achievement.edit');
+        Route::post('/', [AchievementController::class, 'store'])->name('profile.achievement.store');
+        Route::post('/update/{id}', [AchievementController::class, 'update'])->name('profile.achievement.update');
+        Route::post('/destroy/{id}', [AchievementController::class, 'destroy'])->name('profile.achievement.destroy');
     });
 });
 

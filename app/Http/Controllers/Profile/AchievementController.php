@@ -1,16 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Profile;
 
+use App\Http\Controllers\Controller;
 use App\Models\Achievement;
-use App\Models\EducationHistory;
-use App\Models\JobExperience;
-use App\Models\Regency;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
 
-class ProfileController extends Controller
+class AchievementController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,12 +16,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $id = Auth::user()->id;
-        $profile = User::find($id);
-        $education = EducationHistory::where('user_id', $id)->get();
-        $job = JobExperience::where('user_id', $id)->get();
-        $achievement = Achievement::where('user_id', $id)->get();
-        return view('profile.index', compact('profile', 'education', 'job', 'achievement'));
+        //
     }
 
     /**
@@ -34,7 +26,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        //
+        return view('profile.achievement.create');
     }
 
     /**
@@ -45,7 +37,17 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'year' => 'required',
+            'detail' => 'required'
+        ]);
+
+        $achievement = new Achievement();
+        $achievement->year = $request->year;
+        $achievement->detail = $request->detail;
+        $achievement->user_id = Auth::id();
+        $achievement->save();
+        return redirect("/profile")->with('pesan', 'Berhasil menambah data penghargaan/prestasi');
     }
 
     /**
@@ -67,9 +69,7 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        $profile = User::find($id);
-        $regencies = Regency::all();
-        return view('profile.edit', compact('profile', 'regencies'));
+        //
     }
 
     /**
@@ -92,6 +92,8 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $achievement = Achievement::find($id);
+        $achievement->delete();
+        return redirect("/profile")->with('pesan', 'Data penghargaan/prestasi berhasil dihapus'); 
     }
 }
