@@ -3,7 +3,9 @@
         <tr>
             <th>Nama Perguruan Tinggi</th>
             <th>Kabupaten/Kota</th>
+            @if (Auth::user()->level == 'admin')
             <th>Aksi</th>
+            @endif
         </tr>
     </thead>
     <tbody>
@@ -11,6 +13,7 @@
         <tr>
             <td>{{$data->name}}</td>
             <td>{{$data->regency->name}}</td>
+            @if (Auth::user()->level == 'admin')
             <td>
                 <form action="{{route('college.destroy', $data->id)}}" method="POST">
                     @csrf
@@ -18,7 +21,9 @@
                     <button onclick="return confirm('Yakin akan dihapus?')" class="btn btn-danger btn-xs"><i class="fa fa-times"></i> Hapus</button>
                 </form>
             </td>
+            @endif
         </tr>
         @endforeach
-    </tbody>
+    </tbody>      
+    
 </table>

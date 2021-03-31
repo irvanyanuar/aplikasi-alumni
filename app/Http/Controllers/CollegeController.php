@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\College;
 use App\Models\Regency;
 use Illuminate\Http\Request;
+use Auth;
 
 class CollegeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -69,9 +74,13 @@ class CollegeController extends Controller
      */
     public function edit($id)
     {
-        $college = College::find($id);
-        $regencies = Regency::all();
-        return view('college.edit', compact('college', 'regencies'));
+        if (Auth::user()->level == 'admin') {
+            $college = College::find($id);
+            $regencies = Regency::all();
+            return view('college.edit', compact('college', 'regencies'));
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**
@@ -83,16 +92,20 @@ class CollegeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'regency_id' => 'required'
-        ]);
-        $college = College::find($id);
-        $college->name = $request->name;
-        $college->regency_id = $request->regency_id;
+        if (Auth::user()->level == 'admin') {
+            $this->validate($request, [
+                'name' => 'required',
+                'regency_id' => 'required'
+            ]);
+            $college = College::find($id);
+            $college->name = $request->name;
+            $college->regency_id = $request->regency_id;
 
-        $college->update();
-        return redirect("/college")->with('pesan', 'Berhasil mengupdate data perguruan tinggi');
+            $college->update();
+            return redirect("/college")->with('pesan', 'Berhasil mengupdate data perguruan tinggi');
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**
@@ -103,8 +116,12 @@ class CollegeController extends Controller
      */
     public function destroy($id)
     {
-        $college = College::find($id);
-        $college->delete();
-        return redirect("/college")->with('pesan', 'Data berhasil dihapus');
+        if (Auth::user()->level == 'admin') {
+            $college = College::find($id);
+            $college->delete();
+            return redirect("/college")->with('pesan', 'Data berhasil dihapus');
+        } else {
+            return redirect()->back();
+        }
     }
 }

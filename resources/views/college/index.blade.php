@@ -38,6 +38,7 @@
                         <i class="fa fa-plus fa-xs"></i> Tambah Data</a>
                 </div>
             </h4>
+
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -46,6 +47,10 @@
 
         </div>
         <!-- /.card-body -->
+
+        <div class="card-footer">
+            <div class="float-right">* Tambah data perguruan tinggi jika tidak ada di dalam daftar</div>
+        </div>
     </div>
     <!-- /.card -->
 </div>

@@ -8,14 +8,17 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
+        @if(Auth::check())
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{asset('assets/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+                <img src="{{asset('assets/img/foto-profil/'.Auth::user()->photo)}}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block">{{Auth::user()->name}}<br>({{Auth::user()->level}})</a>
             </div>
         </div>
+        @endif
+
         <hr>
         <!-- SidebarSearch Form -->
         <div class="form-inline">
@@ -74,7 +77,9 @@
                     </ul>
                 </li>
 
+                @if(Auth::check())
                 <li class="nav-header">Manajemen Master Data</li>
+                @if(Auth::user()->level == 'admin')
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
@@ -85,12 +90,6 @@
                     </a>
                     <ul class="nav nav-treeview" style="display: none;">
                         <li class="nav-item">
-                            <a href="{{route('admin.index')}}" class="nav-link">
-                                <i class="nav-icon fas fa-users-cog"></i>
-                                <p>Data Admin</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="{{route('alumni.index')}}" class="nav-link">
                                 <i class="nav-icon fas fa-address-card"></i>
                                 <p>
@@ -98,8 +97,15 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{route('admin.index')}}" class="nav-link">
+                                <i class="nav-icon fas fa-users-cog"></i>
+                                <p>Data Admin</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
+                @endif
                 <li class="nav-item">
                     <a href="{{route('college.index')}}" class="nav-link">
                         <i class="fas fa-university nav-icon"></i>
@@ -113,6 +119,8 @@
                     </a>
                 </li>
 
+
+                @if(Auth::user()->level == 'alumni')
                 <li class="nav-header">Profil</li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
@@ -122,23 +130,8 @@
                             <!-- <i class="right fas fa-angle-left"></i> -->
                         </p>
                     </a>
-                    <!-- <ul class="nav nav-treeview" style="display: none;">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-user-graduate"></i>
-                                <p>Statistik Per Tahun</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-university"></i>
-                                <p>
-                                    Statistik Perguruan Tinggi
-                                </p>
-                            </a>
-                        </li>
-                    </ul> -->
                 </li>
+                @endif
 
                 <li class="nav-item">
                     <form action="{{route('logout')}}" method="POST">
@@ -146,6 +139,7 @@
                         <button onclick="return confirm('Yakin akan logout?')" class="nav-link btn btn-flat"><i class="fas fa-sign-out-alt nav-icon"></i> Logout</button>
                     </form>
                 </li>
+                @endif
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
