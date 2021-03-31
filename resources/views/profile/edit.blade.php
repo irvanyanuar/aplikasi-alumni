@@ -9,7 +9,7 @@
 @section('content-header')
 <div class="row mb-2">
     <div class="col-sm-6">
-        <h1 class="m-0">profile</h1>
+        <h1 class="m-0">Profil</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -37,6 +37,18 @@
                 <div class="form-group">
                     <label for="email">Email <span class="text-danger">*</span></label>
                     <input type="text" value="{{$profile->email}}" class="form-control" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="photo">Foto</label>
+                    <div class="form-group">
+                        <!-- <label for="customFile">Custom File</label> -->
+                        <div class="custom-file">
+                            <input type="file" accept=".jpg,.jpeg,.png" class="custom-file-input" id="customFile" name="photo">
+                            <label class="custom-file-label" for="customFile">Choose file</label>
+                            <div>(Foto minimal 500&times;500 piksel berekstensi .jpg, .jpeg, atau .png )</div>
+                            <span class="text-primary">*</span>) Apabila foto tidak diganti kosongkan saja
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="student_number">Nomor Induk<span class="text-danger">*</span></label>
@@ -109,14 +121,15 @@
 @section('script')
 <!-- Select2 -->
 <script src="{{asset('assets/plugins/select2/js/select2.full.min.js')}}"></script>
+<script src="{{asset('assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 <script>
     $(document).ready(function() {
         $('#pilihKabupatenKota').select2();
     });
 </script>
 <script type="text/javascript">
+    bsCustomFileInput.init();
     $(function() {
-
         $("#btnSubmit").click(function() {
             var password = $("#txtPassword").val();
             var confirmPassword = $("#txtConfirmPassword").val();

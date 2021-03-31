@@ -3,6 +3,7 @@
 use App\Http\Controllers\User\AdminController;
 use App\Http\Controllers\User\AlumniController;
 use App\Http\Controllers\CollegeController;
+use App\Http\Controllers\Profile\EducationHistoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegencyController;
 use Facade\FlareClient\View;
@@ -74,9 +75,17 @@ Route::prefix('/profile')->group(function () {
     Route::get('/', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('/create', [ProfileController::class, 'create'])->name('profile.create');
     Route::get('/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::post('/', [ProfileController::class, 'store'])->name('profile.store');
+    // Route::post('/', [ProfileController::class, 'store'])->name('profile.store');
     Route::post('/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
     Route::post('/destroy/{id}', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::prefix('/education')->group(function () {
+        Route::get('/', [EducationHistoryController::class, 'index'])->name('profile.education.index');
+        Route::get('/create', [EducationHistoryController::class, 'create'])->name('profile.education.create');
+        Route::get('/edit/{id}', [EducationHistoryController::class, 'edit'])->name('profile.education.edit');
+        Route::post('/', [EducationHistoryController::class, 'store'])->name('profile.education.store');
+        Route::post('/update/{id}', [EducationHistoryController::class, 'update'])->name('profile.education.update');
+        Route::post('/destroy/{id}', [EducationHistoryController::class, 'destroy'])->name('profile.education.destroy');
+    });
 });
 
 

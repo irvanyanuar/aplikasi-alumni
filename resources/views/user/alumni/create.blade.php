@@ -25,7 +25,7 @@
 <div class="col-12">
     <div class="card card-primary col-md-9">
         <div class="card-header">
-            <h4>Tambah Data</h4>
+            <h4>Tambah Data Alumni</h4>
         </div>
         <div class="card-body">
             <form action="{{route('user.alumni.store')}}" method="POST" enctype="multipart/form-data">
@@ -67,8 +67,8 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="birth_place_id">Tempat Lahir</label>
-                            <select name="birth_place_id" id="pilihKabupatenKota" class="form-control select2" style="width: 100%;">
+                            <label for="birth_place_id">Tempat Lahir<span class="text-danger">*</span></label>
+                            <select name="birth_place_id" id="pilihKabupatenKota" class="form-control select2" style="width: 100%;" required>
                                 <option value="">Pilih Kabupaten/Kota</option>
                                 @foreach($regencies as $data)
                                 <option value="{{$data->id}}">{{$data->name}}</option>
@@ -78,8 +78,8 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="birth_date">Tanggal Lahir</label>
-                            <input type="date" class="form-control" name="birth_date">
+                            <label for="birth_date">Tanggal Lahir<span class="text-danger">*</span></label>
+                            <input type="date" class="form-control" name="birth_date" required>
                         </div>
                     </div>
                 </div>

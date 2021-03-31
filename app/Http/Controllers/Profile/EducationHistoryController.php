@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Profile;
 
+use App\Http\Controllers\Controller;
+use App\Models\College;
 use App\Models\EducationHistory;
-use App\Models\Regency;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
 
-class ProfileController extends Controller
+class EducationHistoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +17,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $id = Auth::user()->id;
-        $profile = User::find($id);
-        $education = EducationHistory::where('user_id', $id)->get();
-        return view('profile.index', compact('profile', 'education'));
+        //
     }
 
     /**
@@ -30,7 +27,8 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        //
+        $colleges = College::all();
+        return view('profile.education_history.create', compact('colleges'));
     }
 
     /**
@@ -41,7 +39,20 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'entry_year' => 'required',
+            'graduation_year' => 'required',
+            'college_id' => 'required'
+        ]);
+        $education = new EducationHistory();
+        $education->entry_year = $request->entry_year;
+        $education->graduation_year = $request->graduation_year;
+        $education->jurusan = $request->jurusan;
+        $education->college_id = $request->college_id;
+        $education->user_id = Auth::id();
+
+        $education->save();
+        return redirect("/profile")->with('pesan', 'Berhasil menambah data riwayat sekolah/perguruan tinggi');
     }
 
     /**
@@ -63,9 +74,7 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        $profile = User::find($id);
-        $regencies = Regency::all();
-        return view('profile.edit', compact('profile', 'regencies'));
+        //
     }
 
     /**
@@ -88,6 +97,8 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $education = EducationHistory::find($id);
+        $education->delete();
+        return redirect("/profile")->with('pesan', 'Data riwayat pendidikan berhasil dihapus');        
     }
 }
