@@ -5,6 +5,7 @@ use App\Http\Controllers\User\AlumniController;
 use App\Http\Controllers\CollegeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Profile\EducationHistoryController;
+use App\Http\Controllers\Profile\JobExperienceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegencyController;
 use Facade\FlareClient\View;
@@ -77,6 +78,7 @@ Route::prefix('/profile')->group(function () {
     // Route::post('/', [ProfileController::class, 'store'])->name('profile.store');
     Route::post('/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
     Route::post('/destroy/{id}', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
     Route::prefix('/education')->group(function () {
         Route::get('/', [EducationHistoryController::class, 'index'])->name('profile.education.index');
         Route::get('/create', [EducationHistoryController::class, 'create'])->name('profile.education.create');
@@ -84,6 +86,15 @@ Route::prefix('/profile')->group(function () {
         Route::post('/', [EducationHistoryController::class, 'store'])->name('profile.education.store');
         Route::post('/update/{id}', [EducationHistoryController::class, 'update'])->name('profile.education.update');
         Route::post('/destroy/{id}', [EducationHistoryController::class, 'destroy'])->name('profile.education.destroy');
+    });
+
+    Route::prefix('/job')->group(function () {
+        Route::get('/', [JobExperienceController::class, 'index'])->name('profile.job.index');
+        Route::get('/create', [JobExperienceController::class, 'create'])->name('profile.job.create');
+        Route::get('/edit/{id}', [JobExperienceController::class, 'edit'])->name('profile.job.edit');
+        Route::post('/', [JobExperienceController::class, 'store'])->name('profile.job.store');
+        Route::post('/update/{id}', [JobExperienceController::class, 'update'])->name('profile.job.update');
+        Route::post('/destroy/{id}', [JobExperienceController::class, 'destroy'])->name('profile.job.destroy');
     });
 });
 

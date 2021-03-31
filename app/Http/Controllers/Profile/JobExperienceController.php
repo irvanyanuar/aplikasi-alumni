@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Profile;
 
-use App\Models\EducationHistory;
+use App\Http\Controllers\Controller;
 use App\Models\JobExperience;
-use App\Models\Regency;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
 
-class ProfileController extends Controller
+class JobExperienceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +16,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $id = Auth::user()->id;
-        $profile = User::find($id);
-        $education = EducationHistory::where('user_id', $id)->get();
-        $job = JobExperience::where('user_id', $id)->get();
-        return view('profile.index', compact('profile', 'education', 'job'));
+        //
     }
 
     /**
@@ -32,7 +26,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        //
+        return view('profile.job.create');
     }
 
     /**
@@ -43,7 +37,18 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'start_date' => 'required',
+            'detail' => 'required'
+        ]);
+
+        $job = new JobExperience();
+        $job->start_date = $request->start_date;
+        $job->end_date = $request->end_date;
+        $job->detail = $request->detail;
+        $job->user_id = Auth::id();
+        $job->save();
+        return redirect("/profile")->with('pesan', 'Berhasil menambah data pengalaman kerja');
     }
 
     /**
@@ -65,9 +70,7 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        $profile = User::find($id);
-        $regencies = Regency::all();
-        return view('profile.edit', compact('profile', 'regencies'));
+        //
     }
 
     /**
@@ -90,6 +93,8 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $job = JobExperience::find($id);
+        $job->delete();
+        return redirect("/profile")->with('pesan', 'Data pengalaman kerja berhasil dihapus');   
     }
 }

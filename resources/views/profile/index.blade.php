@@ -16,14 +16,15 @@
 
 @section('content')
 @if(Session::has('pesan'))
-<div class="alert alert-success">
+<div class="alert alert-success col-12">
     <a href="#" class="close text-decoration-none" data-dismiss="alert" aria-label="close"> &times;</a>
     {{Session::get('pesan')}}
 </div>
 @endif
-<div class="col-12">
+
+<div class="col">
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-6">
             <!-- Profile Image -->
             <div class="card card-primary card-outline">
                 <div class="card-body box-profile">
@@ -65,7 +66,7 @@
             <!-- /.card -->
         </div>
 
-        <div class="col-md-7">
+        <div class="col-md-6">
             <div class="card card-danger card-outline">
                 <div class="card-header">
                     <h4 class="mb-3">Riwayat Pendidikan</h4>
@@ -76,6 +77,21 @@
                 </div>
                 <div class="card-body">
                     @include('profile.education_history.table')
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card card-danger card-outline">
+                <div class="card-header">
+                    <h4 class="mb-3">Pengalaman Kerja</h4>
+                    <div>
+                        <a href="{{ route('profile.job.create') }}" class="btn btn-success mb-3 btn-xs">
+                            <i class="fa fa-plus fa-sm"></i></a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    @include('profile.job.table')
                 </div>
             </div>
         </div>

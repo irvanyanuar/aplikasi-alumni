@@ -1,5 +1,6 @@
 <table class="table table-striped table-sm">
     <thead>
+        <th>No.</th>
         <th>Thn. Masuk</th>
         <th>Thn. Lulus</th>
         <th>Jurusan</th>
@@ -8,8 +9,10 @@
         <th></th>
     </thead>
     <tbody>
+        <?php $no = 0; ?>
         @foreach($education as $data)
         <tr>
+            <td><?= ++$no; ?></td>
             <td>{{$data->entry_year}}</td>
             <td>{{$data->graduation_year}}</td>
             <td>{{$data->jurusan}}</td>
