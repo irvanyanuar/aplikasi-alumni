@@ -2,7 +2,7 @@
     <!-- small box -->
     <div class="small-box bg-info">
         <div class="inner">
-            <h3>5</h3>
+            <h3>{{$alumni->count()}}</h3>
             <p>Data Alumni</p>
         </div>
         <div class="icon">
@@ -16,7 +16,7 @@
     <!-- small box -->
     <div class="small-box bg-success">
         <div class="inner">
-            <h3>7</h3>
+            <h3>{{$jumlahCollege}}</h3>
             <p>Perguruan Tinggi</p>
         </div>
         <div class="icon">
@@ -33,9 +33,9 @@
     <!-- small box -->
     <div class="small-box bg-warning">
         <div class="inner">
-            <h3>5</h3>
+            <h3>{{$jumlahPrestasi}}</h3>
 
-            <p>Tahun Lulus</p>
+            <p>Prestasi Alumni</p>
         </div>
         <div class="icon">
             <i class="ion ion-stats-bars"></i>
@@ -50,7 +50,7 @@
     <!-- small box -->
     <div class="small-box bg-danger">
         <div class="inner">
-            <h3>7</h3>
+            <h3>{{$jumlahAdmin}}</h3>
             <p>Admin</p>
         </div>
         <div class="icon">

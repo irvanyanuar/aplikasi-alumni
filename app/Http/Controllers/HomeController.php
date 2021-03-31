@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\College;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,10 +13,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
@@ -23,6 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $alumni = User::where('level', 'alumni')->get();
+        $jumlahCollege = College::where('jenis', 'perguruan tinggi')->get()->count();
+        $jumlahPrestasi = 10;
+        $jumlahAdmin = User::where('level', 'admin')->count();
+        return view('dashboard.index', compact('alumni', 'jumlahCollege', 'jumlahPrestasi', 'jumlahAdmin'));
     }
 }

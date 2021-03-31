@@ -3,6 +3,7 @@
 use App\Http\Controllers\User\AdminController;
 use App\Http\Controllers\User\AlumniController;
 use App\Http\Controllers\CollegeController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Profile\EducationHistoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegencyController;
@@ -30,9 +31,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    return View('dashboard.index');
-})->name('home');
+Route::get('/home',[HomeController::class, 'index'])->name('home');
 
 Route::get('/tes', function () {
     return View('template.index');
