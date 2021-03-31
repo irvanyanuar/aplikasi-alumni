@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Profile\AchievementController;
 use App\Http\Controllers\Profile\EducationHistoryController;
 use App\Http\Controllers\Profile\JobExperienceController;
+use App\Http\Controllers\Profile\OrganizationHistoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegencyController;
 use Facade\FlareClient\View;
@@ -105,6 +106,15 @@ Route::prefix('/profile')->group(function () {
         Route::post('/', [AchievementController::class, 'store'])->name('profile.achievement.store');
         Route::post('/update/{id}', [AchievementController::class, 'update'])->name('profile.achievement.update');
         Route::post('/destroy/{id}', [AchievementController::class, 'destroy'])->name('profile.achievement.destroy');
+    });
+
+    Route::prefix('/organization')->group(function () {
+        Route::get('/', [OrganizationHistoryController::class, 'index'])->name('profile.organization.index');
+        Route::get('/create', [OrganizationHistoryController::class, 'create'])->name('profile.organization.create');
+        Route::get('/edit/{id}', [OrganizationHistoryController::class, 'edit'])->name('profile.organization.edit');
+        Route::post('/', [OrganizationHistoryController::class, 'store'])->name('profile.organization.store');
+        Route::post('/update/{id}', [OrganizationHistoryController::class, 'update'])->name('profile.organization.update');
+        Route::post('/destroy/{id}', [OrganizationHistoryController::class, 'destroy'])->name('profile.organization.destroy');
     });
 });
 

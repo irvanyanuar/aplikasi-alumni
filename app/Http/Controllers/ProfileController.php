@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Achievement;
 use App\Models\EducationHistory;
 use App\Models\JobExperience;
+use App\Models\OrganizationHistory;
 use App\Models\Regency;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -26,7 +27,8 @@ class ProfileController extends Controller
         $education = EducationHistory::where('user_id', $id)->get();
         $job = JobExperience::where('user_id', $id)->get();
         $achievement = Achievement::where('user_id', $id)->get();
-        return view('profile.index', compact('profile', 'education', 'job', 'achievement'));
+        $organization = OrganizationHistory::where('user_id', $id)->get();
+        return view('profile.index', compact('profile', 'education', 'job', 'achievement', 'organization'));
     }
 
     /**

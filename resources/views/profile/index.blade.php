@@ -95,7 +95,7 @@
         </div>
 
         <div class="col-md-6">
-            <div class="card card-danger card-outline">
+            <div class="card card-success card-outline">
                 <div class="card-header">
                     <h4 class="mb-3">Penghargaan/Prestasi</h4>
                     <div>
@@ -105,6 +105,21 @@
                 </div>
                 <div class="card-body">
                     @include('profile.achievement.table')
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card card-primary card-outline">
+                <div class="card-header">
+                    <h4 class="mb-3">Riwayat Organisasi</h4>
+                    <div>
+                        <a href="{{ route('profile.organization.create') }}" class="btn btn-success mb-3 btn-xs">
+                            <i class="fa fa-plus fa-sm"></i></a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    @include('profile.organization.table')
                 </div>
             </div>
         </div>
