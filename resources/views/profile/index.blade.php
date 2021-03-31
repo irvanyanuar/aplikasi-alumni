@@ -26,14 +26,17 @@
     <div class="row">
         <div class="col-md-6">
             <!-- Profile Image -->
-            <div class="card card-primary card-outline">
-                <div class="card-body box-profile">
+            <div class="card card-success card-outline">
+                <div class="card-header">
                     <div class="text-center">
                         <img class="profile-user-img img-fluid img-circle" src="{{asset('assets/img/foto-profil/'.$profile->photo)}}" alt="User profile picture">
                     </div>
                     <h3 class="profile-username text-center">{{$profile->name}}</h3>
 
                     <p class="text-muted text-center">{{$profile->student_number}}</p>
+                </div>
+                <div class="card-body box-profile">
+
 
                     <ul class="list-group list-group-unbordered mb-3">
                         <li class="list-group-item">
@@ -59,9 +62,11 @@
                         </li>
                     </ul>
 
-                    <a href="{{route('profile.edit', $profile->id)}}" class="btn btn-warning float-right"><b>Edit</b></a>
                 </div>
                 <!-- /.card-body -->
+                <div class="card-footer">
+                    <a href="{{route('profile.edit', $profile->id)}}" class="btn btn-warning float-right"><b>Edit</b></a>
+                </div>
             </div>
             <!-- /.card -->
         </div>
@@ -95,7 +100,7 @@
         </div>
 
         <div class="col-md-6">
-            <div class="card card-success card-outline">
+            <div class="card card-warning card-outline">
                 <div class="card-header">
                     <h4 class="mb-3">Penghargaan/Prestasi</h4>
                     <div>
@@ -120,6 +125,21 @@
                 </div>
                 <div class="card-body">
                     @include('profile.organization.table')
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card card-danger card-outline">
+                <div class="card-header">
+                    <h4 class="mb-3">Kemampuan/Skills</h4>
+                    <div>
+                        <a href="{{ route('profile.skill.create') }}" class="btn btn-success mb-3 btn-xs">
+                            <i class="fa fa-plus fa-sm"></i></a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    @include('profile.skill.table')
                 </div>
             </div>
         </div>

@@ -8,6 +8,7 @@ use App\Http\Controllers\Profile\AchievementController;
 use App\Http\Controllers\Profile\EducationHistoryController;
 use App\Http\Controllers\Profile\JobExperienceController;
 use App\Http\Controllers\Profile\OrganizationHistoryController;
+use App\Http\Controllers\Profile\SkillController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegencyController;
 use Facade\FlareClient\View;
@@ -115,6 +116,15 @@ Route::prefix('/profile')->group(function () {
         Route::post('/', [OrganizationHistoryController::class, 'store'])->name('profile.organization.store');
         Route::post('/update/{id}', [OrganizationHistoryController::class, 'update'])->name('profile.organization.update');
         Route::post('/destroy/{id}', [OrganizationHistoryController::class, 'destroy'])->name('profile.organization.destroy');
+    });
+
+    Route::prefix('/skill')->group(function () {
+        Route::get('/', [SkillController::class, 'index'])->name('profile.skill.index');
+        Route::get('/create', [SkillController::class, 'create'])->name('profile.skill.create');
+        Route::get('/edit/{id}', [SkillController::class, 'edit'])->name('profile.skill.edit');
+        Route::post('/', [SkillController::class, 'store'])->name('profile.skill.store');
+        Route::post('/update/{id}', [SkillController::class, 'update'])->name('profile.skill.update');
+        Route::post('/destroy/{id}', [SkillController::class, 'destroy'])->name('profile.skill.destroy');
     });
 });
 

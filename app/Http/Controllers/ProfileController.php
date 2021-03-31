@@ -7,6 +7,7 @@ use App\Models\EducationHistory;
 use App\Models\JobExperience;
 use App\Models\OrganizationHistory;
 use App\Models\Regency;
+use App\Models\Skill;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
@@ -28,7 +29,9 @@ class ProfileController extends Controller
         $job = JobExperience::where('user_id', $id)->get();
         $achievement = Achievement::where('user_id', $id)->get();
         $organization = OrganizationHistory::where('user_id', $id)->get();
-        return view('profile.index', compact('profile', 'education', 'job', 'achievement', 'organization'));
+        $skill = Skill::where('user_id', $id)->get();
+        
+        return view('profile.index', compact('profile', 'education', 'job', 'achievement', 'organization', 'skill'));
     }
 
     /**
