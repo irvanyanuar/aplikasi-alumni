@@ -60,17 +60,6 @@ class AlumniController extends Controller
         $alumni->birth_place_id = $request->birth_place_id;
         $alumni->birth_date = $request->birth_date;
 
-        if ($request->has('photo')) {
-            $photo = $request->photo;
-            $namafile = time() . '.' . $photo->getClientOriginalExtension();
-            Image::make($photo)->resize(500, null, function ($constraint) {
-                $constraint->aspectRatio();
-            })->crop(500, 500)->save('assets/img/foto-profil/' . $namafile, 80);
-            $alumni->photo = $namafile;
-        } else {
-            $alumni->photo = "alumni.png";
-        }
-
         $alumni->password = bcrypt($request->password);
         $alumni->save();
         return redirect("/user/alumni")->with('pesan', 'Berhasil menambah data alumni');
