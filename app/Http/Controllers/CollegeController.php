@@ -74,13 +74,10 @@ class CollegeController extends Controller
      */
     public function edit($id)
     {
-        if (Auth::user()->level == 'admin') {
-            $college = College::find($id);
-            $regencies = Regency::all();
-            return view('college.edit', compact('college', 'regencies'));
-        } else {
-            return redirect()->back();
-        }
+
+        $college = College::find($id);
+        $regencies = Regency::all();
+        return view('college.edit', compact('college', 'regencies'));
     }
 
     /**
@@ -92,20 +89,17 @@ class CollegeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (Auth::user()->level == 'admin') {
-            $this->validate($request, [
-                'name' => 'required',
-                'regency_id' => 'required'
-            ]);
-            $college = College::find($id);
-            $college->name = $request->name;
-            $college->regency_id = $request->regency_id;
 
-            $college->update();
-            return redirect("/college")->with('pesan', 'Berhasil mengupdate data perguruan tinggi');
-        } else {
-            return redirect()->back();
-        }
+        $this->validate($request, [
+            'name' => 'required',
+            'regency_id' => 'required'
+        ]);
+        $college = College::find($id);
+        $college->name = $request->name;
+        $college->regency_id = $request->regency_id;
+
+        $college->update();
+        return redirect("/college")->with('pesan', 'Berhasil mengupdate data perguruan tinggi');
     }
 
     /**
