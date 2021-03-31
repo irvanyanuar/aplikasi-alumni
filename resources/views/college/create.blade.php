@@ -4,17 +4,18 @@
 <!-- Select2 -->
 <link rel="stylesheet" href="{{asset('assets/plugins/select2/css/select2.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
 @endsection
 
 @section('content-header')
 <div class="row mb-2">
     <div class="col-sm-6">
-        <h1 class="m-0">Perguruan Tinggi</h1>
+        <h1 class="m-0">Sekolah/Perguruan Tinggi</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{route('college.index')}}">Perguruan Tinggi</a></li>
+            <li class="breadcrumb-item"><a href="{{route('college.index')}}">Sekolah/Perguruan Tinggi</a></li>
             <li class="breadcrumb-item active">Tambah Data</li>
         </ol>
     </div><!-- /.col -->
@@ -31,8 +32,21 @@
             <form action="{{route('college.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                    <label for="name">Nama Perguruan Tinggi <span class="text-danger">*</span></label>
+                    <label for="name">Nama Sekolah/Perguruan Tinggi <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="type">Jenis<span class="text-danger">*</span></label>
+                    <div class="form-group">
+                        <div class="form-check icheck-success">
+                            <input class="form-check-input icheck-primary d-inline" id="jenis1" type="radio" name="jenis" value="sekolah" required>
+                            <label class="form-check-label" for="jenis1">Sekolah</label>
+                        </div>
+                        <div class="form-check icheck-success">
+                            <input class="form-check-input" id="jenis2" type="radio" name="jenis" value="perguruan tinggi" required>
+                            <label class="form-check-label" for="jenis2">Perguruan Tinggi</label>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="regency">Kabupaten/Kota <span class="text-danger">*</span></label>
@@ -47,6 +61,7 @@
                 <div class="form-group">
                     <button type="submit" class="btn btn-success">Simpan</button>
                     <a href="/college" class="btn btn-warning">Batal</a>
+
                 </div>
             </form>
             <strong class="float-right"><span class="text-danger">*</span>) Harus diisi.</strong>

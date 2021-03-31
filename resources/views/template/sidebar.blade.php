@@ -109,7 +109,7 @@
                 <li class="nav-item">
                     <a href="{{route('college.index')}}" class="nav-link">
                         <i class="fas fa-university nav-icon"></i>
-                        <p>Data Perguruan Tinggi</p>
+                        <p>Data Sekolah & Kampus</p>
                     </a>
                 </li>
                 <li class="nav-item">

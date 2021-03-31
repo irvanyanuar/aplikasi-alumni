@@ -1,7 +1,8 @@
 <table class="table" id="collegeTable">
     <thead class="thead-light">
         <tr>
-            <th>Nama Perguruan Tinggi</th>
+            <th>Nama Sekolah/Perguruan Tinggi</th>
+            <th>Jenis</th>
             <th>Kabupaten/Kota</th>
             <th>Aksi</th>
         </tr>
@@ -10,6 +11,7 @@
         @foreach ($colleges as $data)
         <tr>
             <td>{{$data->name}}</td>
+            <td>{{$data->jenis}}</td>
             <td>{{$data->regency->name}}</td>
 
             <td>

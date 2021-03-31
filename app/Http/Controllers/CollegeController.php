@@ -49,10 +49,11 @@ class CollegeController extends Controller
         ]);
         $college = new College();
         $college->name = $request->name;
+        $college->jenis = $request->jenis;
         $college->regency_id = $request->regency_id;
 
         $college->save();
-        return redirect("/college")->with('pesan', 'Berhasil menambah data perguruan tinggi');
+        return redirect("/college")->with('pesan', 'Berhasil menambah data sekolah/perguruan tinggi');
     }
 
     /**
@@ -96,10 +97,11 @@ class CollegeController extends Controller
         ]);
         $college = College::find($id);
         $college->name = $request->name;
+        $college->jenis = $request->jenis;
         $college->regency_id = $request->regency_id;
 
         $college->update();
-        return redirect("/college")->with('pesan', 'Berhasil mengupdate data perguruan tinggi');
+        return redirect("/college")->with('pesan', 'Berhasil mengupdate data sekolah/perguruan tinggi');
     }
 
     /**

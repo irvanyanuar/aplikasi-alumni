@@ -10,12 +10,12 @@
 @section('content-header')
 <div class="row mb-2">
     <div class="col-sm-6">
-        <h1 class="m-0">Perguruan Tinggi</h1>
+        <h1 class="m-0">Sekolah/Perguruan Tinggi</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-            <li class="breadcrumb-item active">Perguruan Tinggi</li>
+            <li class="breadcrumb-item active">Sekolah/Perguruan Tinggi</li>
         </ol>
     </div><!-- /.col -->
 </div><!-- /.row -->
@@ -32,7 +32,7 @@
     <!-- /.card -->
     <div class="card card-info card-outline">
         <div class="card-header">
-            <h4><i class="nav-icon fa fa-university fa-xs"></i> Data Perguruan Tinggi
+            <h4><i class="nav-icon fa fa-university fa-xs"></i> Data Sekolah/Perguruan Tinggi
                 <div class="float-right">
                     <a href="{{ route('college.create') }}" class="btn btn-primary mb-3 btn-sm">
                         <i class="fa fa-plus fa-xs"></i> Tambah Data</a>
@@ -49,7 +49,7 @@
         <!-- /.card-body -->
 
         <div class="card-footer">
-            <div class="float-right">* Tambah data perguruan tinggi jika tidak ada di dalam daftar</div>
+            <div class="float-right">* Tambah data sekolah/perguruan tinggi jika tidak ada di dalam daftar</div>
         </div>
     </div>
     <!-- /.card -->

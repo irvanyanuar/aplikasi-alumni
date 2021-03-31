@@ -4,17 +4,18 @@
 <!-- Select2 -->
 <link rel="stylesheet" href="{{asset('assets/plugins/select2/css/select2.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
 @endsection
 
 @section('content-header')
 <div class="row mb-2">
     <div class="col-sm-6">
-        <h1 class="m-0">Perguruan Tinggi</h1>
+        <h1 class="m-0">Sekolah/Perguruan Tinggi</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{route('college.index')}}">Perguruan Tinggi</a></li>
+            <li class="breadcrumb-item"><a href="{{route('college.index')}}">Sekolah/Perguruan Tinggi</a></li>
             <li class="breadcrumb-item active">Edit Data</li>
         </ol>
     </div><!-- /.col -->
@@ -31,16 +32,36 @@
             <form action="{{route('college.update', $college->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                    <label for="name">Nama Perguruan Tinggi <span class="text-danger">*</span></label>
+                    <label for="name">Nama Sekolah/Perguruan Tinggi <span class="text-danger">*</span></label>
                     <input type="text" value="{{$college->name}}" class="form-control" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="type">Jenis<span class="text-danger">*</span></label>
+                    <div class="form-group">
+                        <div class="form-check icheck-success">
+                            <input class="form-check-input icheck-primary d-inline"
+                            @if($college->jenis == "sekolah")
+                            checked
+                            @endif
+                            id="jenis1" type="radio" name="jenis" value="sekolah" required>
+                            <label class="form-check-label" for="jenis1">Sekolah</label>
+                        </div>
+                        <div class="form-check icheck-success">
+                            <input class="form-check-input"
+                            @if($college->jenis == "perguruan tinggi")
+                            checked
+                            @endif
+                            id="jenis2" type="radio" name="jenis" value="perguruan tinggi" required>
+                            <label class="form-check-label" for="jenis2">Perguruan Tinggi</label>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="regency">Kabupaten/Kota <span class="text-danger">*</span></label>
                     <select name="regency_id" id="pilihKabupatenKota" class="form-control select2" style="width: 100%;" required>
                         <option value="">Pilih Kabupaten/Kota</option>
                         @foreach($regencies as $data)
-                        <option value="{{$data->id}}"
-                        @if ($data->id == $college->regency_id)
+                        <option value="{{$data->id}}" @if ($data->id == $college->regency_id)
                             selected
                             @endif
                             >{{$data->name}}</option>
