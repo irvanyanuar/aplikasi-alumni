@@ -3,6 +3,7 @@
 use App\Http\Controllers\User\AdminController;
 use App\Http\Controllers\User\AlumniController;
 use App\Http\Controllers\CollegeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegencyController;
 use Facade\FlareClient\View;
 use Illuminate\Support\Facades\Auth;
@@ -67,6 +68,15 @@ Route::prefix('/college')->group(function () {
 
 Route::prefix('/regency')->group(function () {
     Route::get('/', [RegencyController::class, 'index'])->name('regency.index');
+});
+
+Route::prefix('/profile')->group(function () {
+    Route::get('/', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/create', [ProfileController::class, 'create'])->name('profile.create');
+    Route::get('/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/', [ProfileController::class, 'store'])->name('profile.store');
+    Route::post('/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/destroy/{id}', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 

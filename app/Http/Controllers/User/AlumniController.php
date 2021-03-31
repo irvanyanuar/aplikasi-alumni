@@ -73,7 +73,7 @@ class AlumniController extends Controller
 
         $alumni->password = bcrypt($request->password);
         $alumni->save();
-        return redirect("/alumni")->with('pesan', 'Berhasil menambah data alumni');
+        return redirect("/user/alumni")->with('pesan', 'Berhasil menambah data alumni');
     }
 
     /**
@@ -144,7 +144,7 @@ class AlumniController extends Controller
         }
 
         $alumni->update();
-        return redirect("/alumni")->with('pesan', 'Berhasil mengupdate data alumni');
+        return redirect("/user/alumni")->with('pesan', 'Berhasil mengupdate data alumni');
     }
 
     /**
@@ -161,6 +161,6 @@ class AlumniController extends Controller
             File::delete('assets/img/foto-profil/' . $alumni->photo);
         }
         $alumni->delete();
-        return redirect("/alumni")->with('pesan', 'Data alumni berhasil dihapus');
+        return redirect("/user/alumni")->with('pesan', 'Data alumni berhasil dihapus');
     }
 }
