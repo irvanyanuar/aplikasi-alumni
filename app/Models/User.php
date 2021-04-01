@@ -50,7 +50,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function birth_place(){
+    public function birth_place()
+    {
         return $this->belongsTo('App\Models\Regency', 'birth_place_id', 'id');
     }
 }

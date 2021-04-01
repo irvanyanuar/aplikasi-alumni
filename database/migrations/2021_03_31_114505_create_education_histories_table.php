@@ -18,10 +18,10 @@ class CreateEducationHistoriesTable extends Migration
             $table->year('entry_year');
             $table->year('graduation_year');
             $table->string('jurusan');
-            $table->unsignedBigInteger('college_id')->nullable();
-            $table->foreign('college_id')->references('id')->on('colleges')->onDelete('set null');
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->unsignedBigInteger('college_id');
+            $table->foreign('college_id')->references('id')->on('colleges')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

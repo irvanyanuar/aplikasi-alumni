@@ -16,6 +16,7 @@ class CreateCollegesTable extends Migration
         Schema::create('colleges', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('jenis', 20);
             $table->unsignedBigInteger('regency_id')->nullable();
             $table->foreign('regency_id')->references('id')->on('regencies')->onDelete('set null');
             $table->timestamps();

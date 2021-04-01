@@ -13,14 +13,15 @@ class AddFieldUser extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table){
+        Schema::table('users', function (Blueprint $table) {
             $table->string('level');
             $table->text('photo')->nullable();
             $table->string('student_number')->nullable();
             $table->year('entry_year')->nullable();
             $table->year('graduation_year')->nullable();
             $table->string('birth_place')->nullable();
-            $table->date('birth_date')->nullable();
+            $table->unsignedBigInteger('birth_date_id')->nullable();
+            $table->foreign('birth_date_id')->references('id')->on('regencies')->onDelete('set null');
             $table->string('phone_number')->nullable();
             $table->text('address')->nullable();
         });

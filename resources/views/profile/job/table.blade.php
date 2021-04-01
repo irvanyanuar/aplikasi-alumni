@@ -1,8 +1,8 @@
 <table class="table table-striped table-sm">
     <thead>
         <th>No.</th>
-        <th>Thn. Mulai</th>
-        <th>Thn. Akhir</th>
+        <th>Tgl. Mulai</th>
+        <th>Tgl. Akhir</th>
         <th>Keterangan</th>
         <th></th>
     </thead>

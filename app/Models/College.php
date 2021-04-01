@@ -10,7 +10,8 @@ class College extends Model
     use HasFactory;
     protected $table = 'colleges';
 
-    public function regency(){
+    public function regency()
+    {
         return $this->belongsTo('App\Models\Regency', 'regency_id', 'id');
     }
 }
