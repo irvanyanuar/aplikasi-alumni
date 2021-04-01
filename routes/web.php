@@ -35,11 +35,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home',[HomeController::class, 'index'])->name('home');
-
-Route::get('/tes', function () {
-    return View('template.index');
-});
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('/user')->group(function () {
     Route::prefix('/admin')->group(function () {
@@ -76,60 +72,36 @@ Route::prefix('/regency')->group(function () {
 
 Route::prefix('/profile')->group(function () {
     Route::get('/', [ProfileController::class, 'index'])->name('profile.index');
-    Route::get('/create', [ProfileController::class, 'create'])->name('profile.create');
     Route::get('/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
-    // Route::post('/', [ProfileController::class, 'store'])->name('profile.store');
     Route::post('/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
-    Route::post('/destroy/{id}', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
+
     Route::prefix('/education')->group(function () {
-        Route::get('/', [EducationHistoryController::class, 'index'])->name('profile.education.index');
         Route::get('/create', [EducationHistoryController::class, 'create'])->name('profile.education.create');
-        Route::get('/edit/{id}', [EducationHistoryController::class, 'edit'])->name('profile.education.edit');
         Route::post('/', [EducationHistoryController::class, 'store'])->name('profile.education.store');
-        Route::post('/update/{id}', [EducationHistoryController::class, 'update'])->name('profile.education.update');
         Route::post('/destroy/{id}', [EducationHistoryController::class, 'destroy'])->name('profile.education.destroy');
     });
 
     Route::prefix('/job')->group(function () {
-        Route::get('/', [JobExperienceController::class, 'index'])->name('profile.job.index');
         Route::get('/create', [JobExperienceController::class, 'create'])->name('profile.job.create');
-        Route::get('/edit/{id}', [JobExperienceController::class, 'edit'])->name('profile.job.edit');
         Route::post('/', [JobExperienceController::class, 'store'])->name('profile.job.store');
-        Route::post('/update/{id}', [JobExperienceController::class, 'update'])->name('profile.job.update');
         Route::post('/destroy/{id}', [JobExperienceController::class, 'destroy'])->name('profile.job.destroy');
     });
 
     Route::prefix('/achievement')->group(function () {
-        Route::get('/', [AchievementController::class, 'index'])->name('profile.achievement.index');
         Route::get('/create', [AchievementController::class, 'create'])->name('profile.achievement.create');
-        Route::get('/edit/{id}', [AchievementController::class, 'edit'])->name('profile.achievement.edit');
         Route::post('/', [AchievementController::class, 'store'])->name('profile.achievement.store');
-        Route::post('/update/{id}', [AchievementController::class, 'update'])->name('profile.achievement.update');
         Route::post('/destroy/{id}', [AchievementController::class, 'destroy'])->name('profile.achievement.destroy');
     });
 
     Route::prefix('/organization')->group(function () {
-        Route::get('/', [OrganizationHistoryController::class, 'index'])->name('profile.organization.index');
         Route::get('/create', [OrganizationHistoryController::class, 'create'])->name('profile.organization.create');
-        Route::get('/edit/{id}', [OrganizationHistoryController::class, 'edit'])->name('profile.organization.edit');
         Route::post('/', [OrganizationHistoryController::class, 'store'])->name('profile.organization.store');
-        Route::post('/update/{id}', [OrganizationHistoryController::class, 'update'])->name('profile.organization.update');
         Route::post('/destroy/{id}', [OrganizationHistoryController::class, 'destroy'])->name('profile.organization.destroy');
     });
 
     Route::prefix('/skill')->group(function () {
-        Route::get('/', [SkillController::class, 'index'])->name('profile.skill.index');
         Route::get('/create', [SkillController::class, 'create'])->name('profile.skill.create');
-        Route::get('/edit/{id}', [SkillController::class, 'edit'])->name('profile.skill.edit');
         Route::post('/', [SkillController::class, 'store'])->name('profile.skill.store');
-        Route::post('/update/{id}', [SkillController::class, 'update'])->name('profile.skill.update');
         Route::post('/destroy/{id}', [SkillController::class, 'destroy'])->name('profile.skill.destroy');
     });
 });
-
-
-
-
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
