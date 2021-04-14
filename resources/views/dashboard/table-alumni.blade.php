@@ -12,9 +12,9 @@
         @foreach ($alumni as $data)
         <tr>
             @if($data->photo == null)
-            <td><img src="{{asset('assets/img/foto-profil/alumni.png')}}" style="width: 80px;"></td>
+            <td><img src="{{asset('assets/img/foto-profil/alumni.png')}}" style="width: 60px;"></td>
             @else
-            <td><img src="{{asset('assets/img/foto-profil/'.$data->photo)}}" style="width: 80px;"> </td>
+            <td><img src="{{asset('assets/img/foto-profil/'.$data->photo)}}" style="width: 60px;"> </td>
             @endif
             <td><b>{{$data->name}}</b></td>
             <td>{{$data->entry_year}}</td>

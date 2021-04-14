@@ -62,13 +62,13 @@
                     <ul class="nav nav-treeview" style="display: none;">
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-graduation-cap"></i>
+                                <i class="nav-icon fas fa-graduation-cap text-warning"></i>
                                 <p>Statistik Per Tahun</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-university"></i>
+                                <i class="nav-icon fas fa-university text-primary"></i>
                                 <p>
                                     Statistik Perguruan Tinggi
                                 </p>
@@ -95,7 +95,7 @@
                     <ul class="nav nav-treeview" style="display: none;">
                         <li class="nav-item">
                             <a href="{{route('user.alumni.index')}}" class="nav-link">
-                                <i class="nav-icon fas fa-address-card"></i>
+                                <i class="nav-icon fas fa-address-card text-success"></i>
                                 <p>
                                     Data User Alumni
                                 </p>
@@ -103,7 +103,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{route('user.admin.index')}}" class="nav-link">
-                                <i class="nav-icon fas fa-users-cog"></i>
+                                <i class="nav-icon fas fa-users-cog text-warning"></i>
                                 <p>Data Admin</p>
                             </a>
                         </li>

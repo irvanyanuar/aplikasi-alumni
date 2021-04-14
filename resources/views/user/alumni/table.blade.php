@@ -1,7 +1,7 @@
 <table class="table table-striped table-sm" id="alumniTable">
     <thead class="thead-light">
         <tr>
-            <th>Nama Admin</th>
+            <th>Nama</th>
             <th>Photo</th>
             <th>Email</th>
             <th>Nomor Induk</th>
@@ -14,7 +14,11 @@
         @foreach ($alumni as $data)
         <tr>
             <td>{{$data->name}}</td>
+            @if($data->photo == null)
+            <td><img src="{{asset('assets/img/foto-profil/alumni.png')}}" style="width: 80px;"></td>
+            @else
             <td><img src="{{asset('assets/img/foto-profil/'.$data->photo)}}" style="width: 80px;"> </td>
+            @endif
             <td>{{$data->email}}</td>
             <td>{{$data->student_number}}</td>
             <td>{{$data->entry_year}}</td>
