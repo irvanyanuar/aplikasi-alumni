@@ -8,7 +8,7 @@
         <div class="icon">
             <i class="ion ion-ios-people"></i>
         </div>
-        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        <div class="small-box-footer">&nbsp</div>
     </div>
 </div>
 <!-- ./col -->
@@ -22,10 +22,7 @@
         <div class="icon">
             <i class="ion ion-pie-graph"></i>
         </div>
-
-        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-
-
+        <div class="small-box-footer">&nbsp</div>
     </div>
 </div>
 <!-- ./col -->
@@ -40,9 +37,7 @@
         <div class="icon">
             <i class="ion ion-stats-bars"></i>
         </div>
-       
-        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-       
+        <div class="small-box-footer">&nbsp</div>
     </div>
 </div>
 <!-- ./col -->
@@ -56,9 +51,7 @@
         <div class="icon">
             <i class="ion ion-settings"></i>
         </div>
-        
-        <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-        
+        <div class="small-box-footer">&nbsp</div>
     </div>
 </div>
 <!-- ./col -->
