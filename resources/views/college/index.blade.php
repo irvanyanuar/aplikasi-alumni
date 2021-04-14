@@ -33,10 +33,12 @@
     <div class="card card-info card-outline">
         <div class="card-header">
             <h4><i class="nav-icon fa fa-university fa-xs"></i> Data Sekolah/Perguruan Tinggi
+                @if(Auth::check())
                 <div class="float-right">
                     <a href="{{ route('college.create') }}" class="btn btn-primary mb-3 btn-sm">
                         <i class="fa fa-plus fa-xs"></i> Tambah Data</a>
                 </div>
+                @endif
             </h4>
 
         </div>
@@ -78,7 +80,7 @@
             "responsive": true,
             "lengthChange": true,
             "autoWidth": true,
-            // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#collegeTable_wrapper .col-md-6:eq(0)');
     });
 </script>

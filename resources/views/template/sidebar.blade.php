@@ -79,6 +79,10 @@
 
                 @if(Auth::check())
                 <li class="nav-header">Manajemen Master Data</li>
+                @else
+                <hr>
+                @endif
+                @if(Auth::check())
                 @if(Auth::user()->level == 'admin')
                 <li class="nav-item">
                     <a href="#" class="nav-link">
@@ -106,6 +110,8 @@
                     </ul>
                 </li>
                 @endif
+                @endif
+
                 <li class="nav-item">
                     <a href="{{route('college.index')}}" class="nav-link">
                         <i class="fas fa-university nav-icon"></i>
@@ -119,7 +125,7 @@
                     </a>
                 </li>
 
-
+                @if(Auth::check())
                 @if(Auth::user()->level == 'alumni')
                 <li class="nav-header">Profil</li>
                 <li class="nav-item">
@@ -137,6 +143,15 @@
                     <form action="{{route('logout')}}" method="POST">
                         @csrf
                         <button onclick="return confirm('Yakin akan logout?')" class="nav-link btn btn-flat"><i class="fas fa-sign-out-alt nav-icon"></i> Logout</button>
+                    </form>
+                </li>
+                @endif
+
+                @if(!Auth::check())
+                <hr>
+                <li class="nav-item">
+                    <form action="login" method="GET">
+                        <button type="submit" class="nav-link btn btn-flat"><i class="fas fa-sign-in-alt nav-icon"></i> Login</button>
                     </form>
                 </li>
                 @endif
