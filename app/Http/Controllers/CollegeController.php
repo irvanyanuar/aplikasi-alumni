@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\College;
+use App\Models\EducationHistory;
 use App\Models\Regency;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -124,5 +126,15 @@ class CollegeController extends Controller
         } else {
             return redirect()->back();
         }
+    }
+
+    public function alumni($id)
+    {
+        $college = College::find($id);
+        
+        $alumni_id = EducationHistory::select('user_id')
+            ->where('college_id', $id)->get();
+        $alumni = User::whereIn('id', $alumni_id)->get();
+        return view('college.alumni', compact('alumni', 'college'));
     }
 }

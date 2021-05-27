@@ -67,6 +67,7 @@ Route::prefix('/college')->group(function () {
     Route::post('/', [CollegeController::class, 'store'])->name('college.store');
     Route::post('/update/{id}', [CollegeController::class, 'update'])->name('college.update');
     Route::post('/destroy/{id}', [CollegeController::class, 'destroy'])->name('college.destroy');
+    Route::get('/alumni/{id}', [CollegeController::class, 'alumni'])->name('college.alumni');
 });
 
 Route::prefix('/regency')->group(function () {

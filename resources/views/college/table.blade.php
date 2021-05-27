@@ -15,7 +15,7 @@
             <td>{{$data->regency->name}}</td>
 
             <td>
-            <a href="" class="btn btn-success btn-xs"><i class="far fa-eye"></i> Lihat Alumni</a>
+            <a href="{{route('college.alumni', $data->id)}}" class="btn btn-success btn-xs"><i class="far fa-eye"></i> Lihat Alumni</a>
                 @if(Auth::check())
                 <a href="{{route('college.edit', $data->id)}}" class="btn btn-warning btn-xs"><i class="fa fa-pencil-alt"></i> Edit</a>
                 @if (Auth::user()->level == 'admin')

@@ -1,6 +1,7 @@
 @extends('template.master')
 
 @section('header')
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- DataTables -->
 <link rel="stylesheet" href="{{asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
@@ -10,53 +11,32 @@
 @section('content-header')
 <div class="row mb-2">
     <div class="col-sm-6">
-        <h1 class="m-0">Sekolah/Perguruan Tinggi</h1>
+        <h1 class="m-0">Data Alumni</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-            <li class="breadcrumb-item active">Sekolah/Perguruan Tinggi</li>
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{route('college.index')}}">Sekolah/Perguruan Tinggi</a></li>
+            <li class="breadcrumb-item active">Data Alumni</li>
         </ol>
     </div><!-- /.col -->
 </div><!-- /.row -->
 @endsection
 
 @section('content')
-@if(Session::has('pesan'))
-<div class="alert alert-success">
-    <a href="#" class="close text-decoration-none" data-dismiss="alert" aria-label="close">&times;</a>
-    {{Session::get('pesan')}}
-</div>
-@endif
 <div class="col-12">
-    <!-- /.card -->
     <div class="card card-info card-outline">
         <div class="card-header">
-            <h4><i class="nav-icon fa fa-university fa-xs"></i> Data Sekolah/Perguruan Tinggi
-                @if(Auth::check())
-                <div class="float-right">
-                    <a href="{{ route('college.create') }}" class="btn btn-primary mb-3 btn-sm">
-                        <i class="fa fa-plus fa-xs"></i> Tambah Data</a>
-                </div>
-                @endif
-            </h4>
-
+            <h5><i class="nav-icon fas fa-user-graduate fa-xs"></i> Data Alumni yang melanjutkan pendidikan ke <b>{{$college->name}}</b></h5>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
 
-            @include('college.table')
+            @include('dashboard.table-alumni')
 
         </div>
         <!-- /.card-body -->
-
-        <div class="card-footer">
-            @if(Auth::check())
-            <div class="float-right">* Tambah data sekolah/perguruan tinggi jika tidak ada di dalam daftar</div>
-            @endif
-        </div>
     </div>
-    <!-- /.card -->
 </div>
 @endsection
 
@@ -78,12 +58,13 @@
 <!-- Page specific script -->
 <script>
     $(function() {
-        $("#collegeTable").DataTable({
+        $("#alumniTable").DataTable({
             "responsive": true,
             "lengthChange": true,
             "autoWidth": true,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#collegeTable_wrapper .col-md-6:eq(0)');
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+            order: [[3, 'desc']]
+        }).buttons().container().appendTo('#alumniTable_wrapper .col-md-6:eq(0)');
     });
 </script>
 

@@ -3,8 +3,8 @@
         <tr>
             <th>Foto</th>
             <th>Nama</th>
-            <th>Tahun Masuk</th>
-            <th>Tahun Lulus</th>
+            <th>Tahun Masuk SMA</th>
+            <th>Tahun Lulus SMA</th>
             <th></th>
         </tr>
     </thead>
