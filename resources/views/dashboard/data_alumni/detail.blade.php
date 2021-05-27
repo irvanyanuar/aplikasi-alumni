@@ -64,7 +64,7 @@
 
                 </div>
                 <!-- /.card-body -->
-                
+
             </div>
             <!-- /.card -->
         </div>
@@ -73,11 +73,13 @@
             <div class="card card-danger card-outline">
                 <div class="card-header">
                     <h4 class="mb-3">Riwayat Pendidikan</h4>
+                    @if(Auth::check())
                     @if(Auth::user()->id == $profile->id)
                     <div>
                         <a href="{{ route('profile.education.create') }}" class="btn btn-success mb-3 btn-xs">
                             <i class="fa fa-plus fa-sm"></i></a>
                     </div>
+                    @endif
                     @endif
                 </div>
                 <div class="card-body">
@@ -88,11 +90,13 @@
             <div class="card card-info card-outline">
                 <div class="card-header">
                     <h4 class="mb-3">Pengalaman Kerja</h4>
+                    @if(Auth::check())
                     @if(Auth::user()->id == $profile->id)
                     <div>
                         <a href="{{ route('profile.job.create') }}" class="btn btn-success mb-3 btn-xs">
                             <i class="fa fa-plus fa-sm"></i></a>
                     </div>
+                    @endif
                     @endif
                 </div>
                 <div class="card-body">
@@ -105,11 +109,13 @@
             <div class="card card-warning card-outline">
                 <div class="card-header">
                     <h4 class="mb-3">Penghargaan/Prestasi</h4>
+                    @if(Auth::check())
                     @if(Auth::user()->id == $profile->id)
                     <div>
                         <a href="{{ route('profile.achievement.create') }}" class="btn btn-success mb-3 btn-xs">
                             <i class="fa fa-plus fa-sm"></i></a>
                     </div>
+                    @endif
                     @endif
                 </div>
                 <div class="card-body">
@@ -122,11 +128,13 @@
             <div class="card card-primary card-outline">
                 <div class="card-header">
                     <h4 class="mb-3">Riwayat Organisasi</h4>
+                    @if(Auth::check())
                     @if(Auth::user()->id == $profile->id)
                     <div>
                         <a href="{{ route('profile.organization.create') }}" class="btn btn-success mb-3 btn-xs">
                             <i class="fa fa-plus fa-sm"></i></a>
                     </div>
+                    @endif
                     @endif
                 </div>
                 <div class="card-body">
@@ -139,11 +147,13 @@
             <div class="card card-danger card-outline">
                 <div class="card-header">
                     <h4 class="mb-3">Kemampuan/Skills</h4>
+                    @if(Auth::check())
                     @if(Auth::user()->id == $profile->id)
                     <div>
                         <a href="{{ route('profile.skill.create') }}" class="btn btn-success mb-3 btn-xs">
                             <i class="fa fa-plus fa-sm"></i></a>
                     </div>
+                    @endif
                     @endif
                 </div>
                 <div class="card-body">

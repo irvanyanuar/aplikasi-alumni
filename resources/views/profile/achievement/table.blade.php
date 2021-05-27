@@ -12,6 +12,7 @@
             <td><?= ++$no; ?></td>
             <td>{{$data->year}}</td>
             <td>{{$data->detail}}</td>
+            @if(Auth::check())
             @if(Auth::user()->id == $profile->id)
             <td>
                 <form action="{{route('profile.achievement.destroy', $data->id)}}" method="POST">
@@ -20,6 +21,7 @@
                     <button onclick="return confirm('Yakin akan dihapus?')" class="btn btn-danger btn-xs"><i class="fa fa-trash-alt"></i></button>
                 </form>
             </td>
+            @endif
             @endif
         </tr>
         @endforeach

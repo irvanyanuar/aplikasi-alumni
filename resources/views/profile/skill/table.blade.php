@@ -10,6 +10,8 @@
         <tr>
             <td><?= ++$no; ?></td>
             <td>{{$data->detail}}</td>
+
+            @if(Auth::check())
             @if(Auth::user()->id == $profile->id)
             <td>
                 <form action="{{route('profile.skill.destroy', $data->id)}}" method="POST">
@@ -19,6 +21,8 @@
                 </form>
             </td>
             @endif
+            @endif
+            
         </tr>
         @endforeach
     </tbody>

@@ -150,7 +150,7 @@
                 @if(!Auth::check())
                 <hr>
                 <li class="nav-item">
-                    <form action="login" method="GET">
+                    <form action="/login" method="GET">
                         <button type="submit" class="nav-link btn btn-flat"><i class="fas fa-sign-in-alt nav-icon"></i> Login</button>
                     </form>
                 </li>
