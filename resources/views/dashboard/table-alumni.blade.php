@@ -19,7 +19,7 @@
             <td><b>{{$data->name}}</b></td>
             <td>{{$data->entry_year}}</td>
             <td>{{$data->graduation_year}}</td>
-            <td><a href="" class="btn btn-success btn-sm">Lihat Detail <i class="far fa-eye"></i></a></td>
+            <td><a href="{{route('alumni.detail', $data->id)}}" class="btn btn-success btn-sm">Lihat Detail <i class="far fa-eye"></i></a></td>
         </tr>
         @endforeach
     </tbody>

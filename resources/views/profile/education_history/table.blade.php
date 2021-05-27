@@ -18,6 +18,8 @@
             <td>{{$data->jurusan}}</td>
             <td>{{$data->college->name}}</td>
             <td>{{$data->college->regency->name}}</td>
+
+            @if(Auth::user()->id == $profile->id)
             <td>
                 <form action="{{route('profile.education.destroy', $data->id)}}" method="POST">
                     @csrf
@@ -25,6 +27,7 @@
                     <button onclick="return confirm('Yakin akan dihapus?')" class="btn btn-danger btn-xs"><i class="fa fa-trash-alt"></i></button>
                 </form>
             </td>
+            @endif
         </tr>
         @endforeach
     </tbody>

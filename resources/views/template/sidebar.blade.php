@@ -45,7 +45,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{route('alumni')}}" class="nav-link">
                         <i class="fas fa-user-graduate nav-icon"></i>
                         <p>Data Alumni</p>
                     </a>

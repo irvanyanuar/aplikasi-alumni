@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Regency;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Image;
+use File;
 
 class AlumniController extends Controller
 {
@@ -56,6 +58,7 @@ class AlumniController extends Controller
         $alumni->level = 'alumni';
         $alumni->student_number = $request->student_number;
         $alumni->entry_year = $request->entry_year;
+        $alumni->photo = 'alumni.png';
         $alumni->graduation_year = $request->graduation_year;
         $alumni->birth_place_id = $request->birth_place_id;
         $alumni->birth_date = $request->birth_date;

@@ -37,6 +37,9 @@ Route::get('/', function () {
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+Route::get('/alumni', [HomeController::class, 'alumni'])->name('alumni');
+Route::get('/alumni/{id}', [HomeController::class, 'detail'])->name('alumni.detail');
+
 Route::prefix('/user')->group(function () {
     Route::prefix('/admin')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('user.admin.index');
