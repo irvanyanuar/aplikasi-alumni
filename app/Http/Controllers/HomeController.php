@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Models\Achievement;
 use App\Models\College;
 use App\Models\EducationHistory;
@@ -53,5 +54,27 @@ class HomeController extends Controller
         $skill = Skill::where('user_id', $id)->get();
 
         return view('dashboard.data_alumni.detail', compact('profile', 'education', 'job', 'achievement', 'organization', 'skill'));
+    }
+
+    public function statistikPerTahun()
+    {
+        $query = DB::table('users')
+            ->select('graduation_year', DB::raw('COUNT(graduation_year) as jumlah'))
+            ->where('level', 'alumni')
+            ->groupBy('graduation_year')
+            ->get();
+
+        return view('dashboard.statistik.per-tahun', compact('query'));
+    }
+
+    public function statistikPerguruanTinggi()
+    {
+        $query = DB::table('users')
+            ->select('graduation_year', DB::raw('COUNT(graduation_year) as jumlah'))
+            ->where('level', 'alumni')
+            ->groupBy('graduation_year')
+            ->get();
+
+        return view('dashboard.statistik.college-chart', compact('query'));
     }
 }

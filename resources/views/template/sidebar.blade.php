@@ -61,13 +61,13 @@
                     </a>
                     <ul class="nav nav-treeview" style="display: none;">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('statistik.pertahun')}}" class="nav-link">
                                 <i class="nav-icon fas fa-graduation-cap text-warning"></i>
                                 <p>Statistik Per Tahun</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('statistik.perguruan.tinggi')}}" class="nav-link">
                                 <i class="nav-icon fas fa-university text-primary"></i>
                                 <p>
                                     Statistik Perguruan Tinggi

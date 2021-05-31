@@ -40,6 +40,9 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/alumni', [HomeController::class, 'alumni'])->name('alumni');
 Route::get('/alumni/{id}', [HomeController::class, 'detail'])->name('alumni.detail');
 
+Route::get('/statistik-per-tahun', [HomeController::class, 'statistikPerTahun'])->name('statistik.pertahun');
+Route::get('/statistik-perguruan-tinggi', [HomeController::class, 'statistikPerguruanTinggi'])->name('statistik.perguruan.tinggi');
+
 Route::prefix('/user')->group(function () {
     Route::prefix('/admin')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('user.admin.index');
