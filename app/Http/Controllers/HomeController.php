@@ -69,10 +69,11 @@ class HomeController extends Controller
 
     public function statistikPerguruanTinggi()
     {
-        $query = DB::table('users')
-            ->select('graduation_year', DB::raw('COUNT(graduation_year) as jumlah'))
-            ->where('level', 'alumni')
-            ->groupBy('graduation_year')
+        $query = DB::table('colleges')
+            ->join('education_histories', 'colleges.id', '=', 'education_histories.college_id')
+            ->where('colleges.jenis', 'perguruan tinggi')
+            ->groupBy('name')
+            ->select('name', DB::raw('COUNT(education_histories.user_id) as jumlah'))
             ->get();
 
         return view('dashboard.statistik.college-chart', compact('query'));
