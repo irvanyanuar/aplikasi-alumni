@@ -31,9 +31,15 @@ Auth::routes([
     'reset' => false
 ]);
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing-page');
 });
+
+// Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
